@@ -1,8 +1,8 @@
-const service = require('../services/pessoasService');
+const service = require('../services/notasService');
 
 const getAll = async (req, res) => {
     try {
-        const response = await service.getAllpessoas();
+        const response = await service.getAllNotas();
         res.status(200).send(response);
     } catch (err) {
         res.status(500).send(err);
@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
     try {
-        const response = await service.getPessoasById(req.params);
+        const response = await service.getNotasById(req.params);
         res.status(200).send(response);
     } catch (err) {
         res.status(500).send(err);
@@ -20,7 +20,7 @@ const getById = async (req, res) => {
 
 const persistir = async (req, res) => {
     try {
-        const response = await service.persistirPessoas(req.body);
+        const response = await service.persistirNotas(req.body);
         res.status(200).send(response);
     } catch (err) {
         res.status(500).send(err);
@@ -29,7 +29,7 @@ const persistir = async (req, res) => {
 
 const excluir = async (req, res) => {
     try {
-        let deletado = await service.excluirPessoas(req.params);
+        let deletado = await service.excluirNotas(req.params);
         let response = deletado 
             ? `Registro ${req.params.id} deletado com sucesso` 
             : `Não foi encontrado nenhum registro com o id ${req.params.id} para ser deletado`;
@@ -39,7 +39,7 @@ const excluir = async (req, res) => {
     }
 }
 
-module.exports.getAllPessoas = getAll;
-module.exports.getPessoasById = getById;
-module.exports.persistirPessoas = persistir;
-module.exports.excluirPessoas = excluir;
+module.exports.getAllNotas = getAll;
+module.exports.getNotasById = getById;
+module.exports.persistirNotas = persistir;
+module.exports.excluirNotas = excluir;

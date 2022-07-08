@@ -1,5 +1,5 @@
 
-const controller = require('../controllers/alunosControllers');
+const controller = require('../controllers/alunosController');
 
 module.exports = (app) => {
     app.get('/alunos', controller.getAllAlunos)
