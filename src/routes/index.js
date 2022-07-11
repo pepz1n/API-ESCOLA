@@ -4,6 +4,7 @@ const professores = require('./professoresRoute')
 const disciplina = require('./disciplinaRoute')
 const notas = require ('./notasRoute')
 const mediaRoute = require('./mediaRoute')
+const mediaTodosRoute = require('./mediaTodosRoute')
 
 
 module.exports = (app) =>{
@@ -13,4 +14,5 @@ module.exports = (app) =>{
     disciplina(app)
     notas(app)
     mediaRoute(app)
+    mediaTodosRoute(app)
 }
