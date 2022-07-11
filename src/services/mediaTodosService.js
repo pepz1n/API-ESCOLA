@@ -4,8 +4,10 @@ const media = async(params) =>{
     const {id_disciplina, data_inicio, data_fim} = params
     let sql = `select
                     a.id as id_aluno,
-                    i.notas
+                    i.notas,
+                    p.nome
                 from alunos as a
+                join pessoas as p on (p.id = a.id_pessoa)
                 inner join (
                     select
                         n.id_aluno,
@@ -27,7 +29,7 @@ const media = async(params) =>{
     
 }
 
-const passou =  async (nota) =>{
+const passou =  (nota) =>{
     let passou = ""
     
     if(nota>= 4 ){
@@ -48,7 +50,7 @@ const passou =  async (nota) =>{
 const calcularMedia = async (vetorNotas) =>{
     let medias = []
         
-    vetorNotas.forEach(async aluno => {
+    vetorNotas.forEach(aluno => {
         
         let totalNotas = 0;
         let totalPesos = 0;
@@ -56,7 +58,7 @@ const calcularMedia = async (vetorNotas) =>{
         
         
         let id_aluno1 = aluno.id_aluno
-        let nomeAluno = await pegarNomeAluno(aluno.id_aluno)
+        let nomeAluno = aluno.nome
         
         
         
@@ -66,7 +68,7 @@ const calcularMedia = async (vetorNotas) =>{
             totalPesos += (Number(nota.peso))
         })  
         let mediaFinal = totalNotas/totalPesos
-        let passo = await passou(mediaFinal)
+        let passo = passou(mediaFinal)
         
         medias.push({
             id_aluno: id_aluno1,
@@ -86,15 +88,15 @@ const pegarNomeMateria = async(idMateria) =>{
 }
 
 
-const pegarNomeAluno = async(id_aluno) =>{
-    let sql3 = `select id_pessoa from alunos where id = $1`
-    let id_pessoa = await db.query(sql3,[id_aluno])
-    let sql4 = `select nome from pessoas where id = $1`
-    let nomePessoa = await db.query (sql4, [id_pessoa.rows[0].id_pessoa])
-    return nomePessoa.rows[0].nome
+// const pegarNomeAluno = async(id_aluno) =>{
+//     let sql3 = `select id_pessoa from alunos where id = $1`
+//     let id_pessoa = await db.query(sql3,[id_aluno])
+//     let sql4 = `select nome from pessoas where id = $1`
+//     let nomePessoa = await db.query (sql4, [id_pessoa.rows[0].id_pessoa])
+//     return nomePessoa.rows[0].nome
     
 
-}
+// }
 
 
 
