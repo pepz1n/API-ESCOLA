@@ -35,7 +35,7 @@ const media = async(params) =>{
     return {
         nomeAluno,
         matricula_aluno: matricula_aluno,
-        Media: notaFinal,
+        Media: notaFinal.toFixed(2),
         passou: passou
     }
    

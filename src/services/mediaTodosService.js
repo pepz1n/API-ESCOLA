@@ -71,9 +71,9 @@ const calcularMedia = async (vetorNotas) =>{
         let passo = passou(mediaFinal)
         
         medias.push({
-            id_aluno: id_aluno1,
-            nomeAluno,
-            mediaFinal,
+            idAluno: id_aluno1,
+            Aluno: nomeAluno,
+            media: mediaFinal.toFixed(2),
             situacao: passo
         })     
     });
